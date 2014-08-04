@@ -1,3 +1,10 @@
+# IntelliJ IDEA
+
+*.iml
+
+# Signing file
+signing.properties
+
 # Built application files
 *.apk
 *.ap_
