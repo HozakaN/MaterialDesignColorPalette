@@ -3,6 +3,22 @@
     <!-- google's material design colours from
     http://www.google.com/design/spec/style/color.html#color-ui-color-palette -->
     <!--reds-->
+    <array name="reds">
+        <item>@color/md_red_500</item>
+        <item>@color/md_red_50</item>
+        <item>@color/md_red_100</item>
+        <item>@color/md_red_200</item>
+        <item>@color/md_red_300</item>
+        <item>@color/md_red_400</item>
+        <item>@color/md_red_600</item>
+        <item>@color/md_red_700</item>
+        <item>@color/md_red_800</item>
+        <item>@color/md_red_900</item>
+        <item>@color/md_red_A100</item>
+        <item>@color/md_red_A200</item>
+        <item>@color/md_red_A400</item>
+        <item>@color/md_red_A700</item>
+    </array>
     <color name="md_red_50">#fde0dc</color>
     <color name="md_red_100">#f9bdbb</color>
     <color name="md_red_200">#f69988</color>
@@ -18,6 +34,22 @@
     <color name="md_red_A400">#ff2d6f</color>
     <color name="md_red_A700">#e00032</color>
     <!-- pinks -->
+    <array name="pinks">
+        <item>@color/md_pink_500</item>
+        <item>@color/md_pink_50</item>
+        <item>@color/md_pink_100</item>
+        <item>@color/md_pink_200</item>
+        <item>@color/md_pink_300</item>
+        <item>@color/md_pink_400</item>
+        <item>@color/md_pink_600</item>
+        <item>@color/md_pink_700</item>
+        <item>@color/md_pink_800</item>
+        <item>@color/md_pink_900</item>
+        <item>@color/md_pink_A100</item>
+        <item>@color/md_pink_A200</item>
+        <item>@color/md_pink_A400</item>
+        <item>@color/md_pink_A700</item>
+    </array>
     <color name="md_pink_50">#fce4ec</color>
     <color name="md_pink_100">#f8bbd0</color>
     <color name="md_pink_200">#f48fb1</color>
@@ -33,6 +65,22 @@
     <color name="md_pink_A400">#f50057</color>
     <color name="md_pink_A700">#c51162</color>
     <!-- purples -->
+    <array name="purples">
+        <item>@color/md_purple_500</item>
+        <item>@color/md_purple_50</item>
+        <item>@color/md_purple_100</item>
+        <item>@color/md_purple_200</item>
+        <item>@color/md_purple_300</item>
+        <item>@color/md_purple_400</item>
+        <item>@color/md_purple_600</item>
+        <item>@color/md_purple_700</item>
+        <item>@color/md_purple_800</item>
+        <item>@color/md_purple_900</item>
+        <item>@color/md_purple_A100</item>
+        <item>@color/md_purple_A200</item>
+        <item>@color/md_purple_A400</item>
+        <item>@color/md_purple_A700</item>
+    </array>
     <color name="md_purple_50">#f3e5f5</color>
     <color name="md_purple_100">#e1bee7</color>
     <color name="md_purple_200">#ce93d8</color>
@@ -48,6 +96,22 @@
     <color name="md_purple_A400">#d500f9</color>
     <color name="md_purple_A700">#aa00ff</color>
     <!-- deep purples -->
+    <array name="deep_purples">
+        <item>@color/md_deep_purple_500</item>
+        <item>@color/md_deep_purple_50</item>
+        <item>@color/md_deep_purple_100</item>
+        <item>@color/md_deep_purple_200</item>
+        <item>@color/md_deep_purple_300</item>
+        <item>@color/md_deep_purple_400</item>
+        <item>@color/md_deep_purple_600</item>
+        <item>@color/md_deep_purple_700</item>
+        <item>@color/md_deep_purple_800</item>
+        <item>@color/md_deep_purple_900</item>
+        <item>@color/md_deep_purple_A100</item>
+        <item>@color/md_deep_purple_A200</item>
+        <item>@color/md_deep_purple_A400</item>
+        <item>@color/md_deep_purple_A700</item>
+    </array>
     <color name="md_deep_purple_50">#ede7f6</color>
     <color name="md_deep_purple_100">#d1c4e9</color>
     <color name="md_deep_purple_200">#b39ddb</color>
@@ -63,6 +127,22 @@
     <color name="md_deep_purple_A400">#651fff</color>
     <color name="md_deep_purple_A700">#6200ea</color>
     <!-- indigo -->
+    <array name="indigos">
+        <item>@color/md_indigo_500</item>
+        <item>@color/md_indigo_50</item>
+        <item>@color/md_indigo_100</item>
+        <item>@color/md_indigo_200</item>
+        <item>@color/md_indigo_300</item>
+        <item>@color/md_indigo_400</item>
+        <item>@color/md_indigo_600</item>
+        <item>@color/md_indigo_700</item>
+        <item>@color/md_indigo_800</item>
+        <item>@color/md_indigo_900</item>
+        <item>@color/md_indigo_A100</item>
+        <item>@color/md_indigo_A200</item>
+        <item>@color/md_indigo_A400</item>
+        <item>@color/md_indigo_A700</item>
+    </array>
     <color name="md_indigo_50">#e8eaf6</color>
     <color name="md_indigo_100">#c5cae9</color>
     <color name="md_indigo_200">#9fa8da</color>
@@ -78,6 +158,22 @@
     <color name="md_indigo_A400">#3d5afe</color>
     <color name="md_indigo_A700">#304ffe</color>
     <!--blue-->
+    <array name="blues">
+        <item>@color/md_blue_500</item>
+        <item>@color/md_blue_50</item>
+        <item>@color/md_blue_100</item>
+        <item>@color/md_blue_200</item>
+        <item>@color/md_blue_300</item>
+        <item>@color/md_blue_400</item>
+        <item>@color/md_blue_600</item>
+        <item>@color/md_blue_700</item>
+        <item>@color/md_blue_800</item>
+        <item>@color/md_blue_900</item>
+        <item>@color/md_blue_A100</item>
+        <item>@color/md_blue_A200</item>
+        <item>@color/md_blue_A400</item>
+        <item>@color/md_blue_A700</item>
+    </array>
     <color name="md_blue_50">#e7e9fd</color>
     <color name="md_blue_100">#d0d9ff</color>
     <color name="md_blue_200">#afbfff</color>
@@ -93,6 +189,22 @@
     <color name="md_blue_A400">#4d73ff</color>
     <color name="md_blue_A700">#4d69ff</color>
     <!-- light blue-->
+    <array name="light_blues">
+        <item>@color/md_light_blue_500</item>
+        <item>@color/md_light_blue_50</item>
+        <item>@color/md_light_blue_100</item>
+        <item>@color/md_light_blue_200</item>
+        <item>@color/md_light_blue_300</item>
+        <item>@color/md_light_blue_400</item>
+        <item>@color/md_light_blue_600</item>
+        <item>@color/md_light_blue_700</item>
+        <item>@color/md_light_blue_800</item>
+        <item>@color/md_light_blue_900</item>
+        <item>@color/md_light_blue_A100</item>
+        <item>@color/md_light_blue_A200</item>
+        <item>@color/md_light_blue_A400</item>
+        <item>@color/md_light_blue_A700</item>
+    </array>
     <color name="md_light_blue_50">#e1f5fe</color>
     <color name="md_light_blue_100">#b3e5fc</color>
     <color name="md_light_blue_200">#81d4fa</color>
@@ -108,6 +220,22 @@
     <color name="md_light_blue_A400">#00b0ff</color>
     <color name="md_light_blue_A700">#0091ea</color>
     <!-- cyan -->
+    <array name="cyans">
+        <item>@color/md_cyan_500</item>
+        <item>@color/md_cyan_50</item>
+        <item>@color/md_cyan_100</item>
+        <item>@color/md_cyan_200</item>
+        <item>@color/md_cyan_300</item>
+        <item>@color/md_cyan_400</item>
+        <item>@color/md_cyan_600</item>
+        <item>@color/md_cyan_700</item>
+        <item>@color/md_cyan_800</item>
+        <item>@color/md_cyan_900</item>
+        <item>@color/md_cyan_A100</item>
+        <item>@color/md_cyan_A200</item>
+        <item>@color/md_cyan_A400</item>
+        <item>@color/md_cyan_A700</item>
+    </array>
     <color name="md_cyan_50">#e0f7fa</color>
     <color name="md_cyan_100">#b2ebf2</color>
     <color name="md_cyan_200">#80deea</color>
@@ -123,6 +251,22 @@
     <color name="md_cyan_A400">#00e5ff</color>
     <color name="md_cyan_A700">#00b8d4</color>
     <!-- teal -->
+    <array name="teals">
+        <item>@color/md_teal_500</item>
+        <item>@color/md_teal_50</item>
+        <item>@color/md_teal_100</item>
+        <item>@color/md_teal_200</item>
+        <item>@color/md_teal_300</item>
+        <item>@color/md_teal_400</item>
+        <item>@color/md_teal_600</item>
+        <item>@color/md_teal_700</item>
+        <item>@color/md_teal_800</item>
+        <item>@color/md_teal_900</item>
+        <item>@color/md_teal_A100</item>
+        <item>@color/md_teal_A200</item>
+        <item>@color/md_teal_A400</item>
+        <item>@color/md_teal_A700</item>
+    </array>
     <color name="md_teal_50">#e0f2f1</color>
     <color name="md_teal_100">#b2dfdb</color>
     <color name="md_teal_200">#80cbc4</color>
@@ -138,6 +282,22 @@
     <color name="md_teal_A400">#1de9b6</color>
     <color name="md_teal_A700">#00bfa5</color>
     <!-- green -->
+    <array name="greens">
+        <item>@color/md_green_500</item>
+        <item>@color/md_green_50</item>
+        <item>@color/md_green_100</item>
+        <item>@color/md_green_200</item>
+        <item>@color/md_green_300</item>
+        <item>@color/md_green_400</item>
+        <item>@color/md_green_600</item>
+        <item>@color/md_green_700</item>
+        <item>@color/md_green_800</item>
+        <item>@color/md_green_900</item>
+        <item>@color/md_green_A100</item>
+        <item>@color/md_green_A200</item>
+        <item>@color/md_green_A400</item>
+        <item>@color/md_green_A700</item>
+    </array>
     <color name="md_green_50">#d0f8ce</color>
     <color name="md_green_100">#a3e9a4</color>
     <color name="md_green_200">#72d572</color>
@@ -153,6 +313,22 @@
     <color name="md_green_A400">#14e715</color>
     <color name="md_green_A700">#12c700</color>
     <!--light green-->
+    <array name="light_greens">
+        <item>@color/md_light_green_500</item>
+        <item>@color/md_light_green_50</item>
+        <item>@color/md_light_green_100</item>
+        <item>@color/md_light_green_200</item>
+        <item>@color/md_light_green_300</item>
+        <item>@color/md_light_green_400</item>
+        <item>@color/md_light_green_600</item>
+        <item>@color/md_light_green_700</item>
+        <item>@color/md_light_green_800</item>
+        <item>@color/md_light_green_900</item>
+        <item>@color/md_light_green_A100</item>
+        <item>@color/md_light_green_A200</item>
+        <item>@color/md_light_green_A400</item>
+        <item>@color/md_light_green_A700</item>
+    </array>
     <color name="md_light_green_50">#f1f8e9</color>
     <color name="md_light_green_100">#dcedc8</color>
     <color name="md_light_green_200">#c5e1a5</color>
@@ -168,6 +344,22 @@
     <color name="md_light_green_A400">#76ff03</color>
     <color name="md_light_green_A700">#64dd17</color>
     <!-- lime-->
+    <array name="limes">
+        <item>@color/md_lime_500</item>
+        <item>@color/md_lime_50</item>
+        <item>@color/md_lime_100</item>
+        <item>@color/md_lime_200</item>
+        <item>@color/md_lime_300</item>
+        <item>@color/md_lime_400</item>
+        <item>@color/md_lime_600</item>
+        <item>@color/md_lime_700</item>
+        <item>@color/md_lime_800</item>
+        <item>@color/md_lime_900</item>
+        <item>@color/md_lime_A100</item>
+        <item>@color/md_lime_A200</item>
+        <item>@color/md_lime_A400</item>
+        <item>@color/md_lime_A700</item>
+    </array>
     <color name="md_lime_50">#f9fbe7</color>
     <color name="md_lime_100">#f0f4c3</color>
     <color name="md_lime_200">#e6ee9c</color>
@@ -183,6 +375,22 @@
     <color name="md_lime_A400">#c6ff00</color>
     <color name="md_lime_A700">#aeea00</color>
     <!--yellow -->
+    <array name="yellows">
+        <item>@color/md_yellow_500</item>
+        <item>@color/md_yellow_50</item>
+        <item>@color/md_yellow_100</item>
+        <item>@color/md_yellow_200</item>
+        <item>@color/md_yellow_300</item>
+        <item>@color/md_yellow_400</item>
+        <item>@color/md_yellow_600</item>
+        <item>@color/md_yellow_700</item>
+        <item>@color/md_yellow_800</item>
+        <item>@color/md_yellow_900</item>
+        <item>@color/md_yellow_A100</item>
+        <item>@color/md_yellow_A200</item>
+        <item>@color/md_yellow_A400</item>
+        <item>@color/md_yellow_A700</item>
+    </array>
     <color name="md_yellow_50">#fffde7</color>
     <color name="md_yellow_100">#fff9c4</color>
     <color name="md_yellow_200">#fff59d</color>
@@ -198,6 +406,22 @@
     <color name="md_yellow_A400">#ffea00</color>
     <color name="md_yellow_A700">#ffd600</color>
     <!--amber-->
+    <array name="ambers">
+        <item>@color/md_amber_500</item>
+        <item>@color/md_amber_50</item>
+        <item>@color/md_amber_100</item>
+        <item>@color/md_amber_200</item>
+        <item>@color/md_amber_300</item>
+        <item>@color/md_amber_400</item>
+        <item>@color/md_amber_600</item>
+        <item>@color/md_amber_700</item>
+        <item>@color/md_amber_800</item>
+        <item>@color/md_amber_900</item>
+        <item>@color/md_amber_A100</item>
+        <item>@color/md_amber_A200</item>
+        <item>@color/md_amber_A400</item>
+        <item>@color/md_amber_A700</item>
+    </array>
     <color name="md_amber_50">#fff8e1</color>
     <color name="md_amber_100">#ffecb3</color>
     <color name="md_amber_200">#ffe082</color>
@@ -213,6 +437,22 @@
     <color name="md_amber_A400">#ffc400</color>
     <color name="md_amber_A700">#ffab00</color>
     <!--orange-->
+    <array name="oranges">
+        <item>@color/md_orange_500</item>
+        <item>@color/md_orange_50</item>
+        <item>@color/md_orange_100</item>
+        <item>@color/md_orange_200</item>
+        <item>@color/md_orange_300</item>
+        <item>@color/md_orange_400</item>
+        <item>@color/md_orange_600</item>
+        <item>@color/md_orange_700</item>
+        <item>@color/md_orange_800</item>
+        <item>@color/md_orange_900</item>
+        <item>@color/md_orange_A100</item>
+        <item>@color/md_orange_A200</item>
+        <item>@color/md_orange_A400</item>
+        <item>@color/md_orange_A700</item>
+    </array>
     <color name="md_orange_50">#fff3e0</color>
     <color name="md_orange_100">#ffe0b2</color>
     <color name="md_orange_200">#ffcc80</color>
@@ -228,6 +468,22 @@
     <color name="md_orange_A400">#ff9100</color>
     <color name="md_orange_A700">#ff6d00</color>
     <!--deep orange-->
+    <array name="deep_oranges">
+        <item>@color/md_deep_orange_500</item>
+        <item>@color/md_deep_orange_50</item>
+        <item>@color/md_deep_orange_100</item>
+        <item>@color/md_deep_orange_200</item>
+        <item>@color/md_deep_orange_300</item>
+        <item>@color/md_deep_orange_400</item>
+        <item>@color/md_deep_orange_600</item>
+        <item>@color/md_deep_orange_700</item>
+        <item>@color/md_deep_orange_800</item>
+        <item>@color/md_deep_orange_900</item>
+        <item>@color/md_deep_orange_A100</item>
+        <item>@color/md_deep_orange_A200</item>
+        <item>@color/md_deep_orange_A400</item>
+        <item>@color/md_deep_orange_A700</item>
+    </array>
     <color name="md_deep_orange_50">#fbe9e7</color>
     <color name="md_deep_orange_100">#ffccbc</color>
     <color name="md_deep_orange_200">#ffab91</color>
@@ -243,6 +499,18 @@
     <color name="md_deep_orange_A400">#ff3d00</color>
     <color name="md_deep_orange_A700">#dd2c00</color>
     <!--brown -->
+    <array name="browns">
+        <item>@color/md_brown_500</item>
+        <item>@color/md_brown_50</item>
+        <item>@color/md_brown_100</item>
+        <item>@color/md_brown_200</item>
+        <item>@color/md_brown_300</item>
+        <item>@color/md_brown_400</item>
+        <item>@color/md_brown_600</item>
+        <item>@color/md_brown_700</item>
+        <item>@color/md_brown_800</item>
+        <item>@color/md_brown_900</item>
+    </array>
     <color name="md_brown_50">#efebe9</color>
     <color name="md_brown_100">#d7ccc8</color>
     <color name="md_brown_200">#bcaaa4</color>
@@ -254,6 +522,20 @@
     <color name="md_brown_800">#4e342e</color>
     <color name="md_brown_900">#3e2723</color>
     <!--grey-->
+    <array name="greys">
+        <item>@color/md_grey_500</item>
+        <item>@color/md_grey_50</item>
+        <item>@color/md_grey_100</item>
+        <item>@color/md_grey_200</item>
+        <item>@color/md_grey_300</item>
+        <item>@color/md_grey_400</item>
+        <item>@color/md_grey_600</item>
+        <item>@color/md_grey_700</item>
+        <item>@color/md_grey_800</item>
+        <item>@color/md_grey_900</item>
+        <item>@color/md_black_1000</item>
+        <item>@color/md_white_1000</item>
+    </array>
     <color name="md_grey_50">#fafafa</color>
     <color name="md_grey_100">#f5f5f5</color>
     <color name="md_grey_200">#eeeeee</color>
@@ -267,6 +549,18 @@
     <color name="md_black_1000">#000000</color>
     <color name="md_white_1000">#ffffff</color>
     <!--blue grey-->
+    <array name="blue_greys">
+        <item>@color/md_blue_grey_500</item>
+        <item>@color/md_blue_grey_50</item>
+        <item>@color/md_blue_grey_100</item>
+        <item>@color/md_blue_grey_200</item>
+        <item>@color/md_blue_grey_300</item>
+        <item>@color/md_blue_grey_400</item>
+        <item>@color/md_blue_grey_600</item>
+        <item>@color/md_blue_grey_700</item>
+        <item>@color/md_blue_grey_800</item>
+        <item>@color/md_blue_grey_900</item>
+    </array>
     <color name="md_blue_grey_50">#eceff1</color>
     <color name="md_blue_grey_100">#cfd8dc</color>
     <color name="md_blue_grey_200">#b0bec5</color>

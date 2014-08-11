@@ -1,15 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <it.gmariotti.cardslib.library.view.CardListView
-        android:id="@+id/palette_card_list"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:paddingLeft="6dp"
-        android:paddingRight="6dp"
-        android:paddingTop="12dp" />
-
-</LinearLayout>
+<it.gmariotti.cardslib.library.view.CardListView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/palette_card_list"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:paddingLeft="6dp"
+    android:paddingRight="6dp"
+    android:paddingTop="12dp" />

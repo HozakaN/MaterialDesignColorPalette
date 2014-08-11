@@ -4,10 +4,53 @@
     <string name="app_name">Material Design Color Palette</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="action_example">Example action</string>
-    <string name="action_settings">Settings</string>
 
     <!-- navigation drawer sections -->
+    <string-array name="color_sections_names">
+        <item>@string/red</item>
+        <item>@string/pink</item>
+        <item>@string/purple</item>
+        <item>@string/deep_purple</item>
+        <item>@string/indigo</item>
+        <item>@string/blue</item>
+        <item>@string/light_blue</item>
+        <item>@string/cyan</item>
+        <item>@string/teal</item>
+        <item>@string/green</item>
+        <item>@string/light_green</item>
+        <item>@string/lime</item>
+        <item>@string/yellow</item>
+        <item>@string/amber</item>
+        <item>@string/orange</item>
+        <item>@string/deep_orange</item>
+        <item>@string/brown</item>
+        <item>@string/grey</item>
+        <item>@string/blue_grey</item>
+    </string-array>
+
+    <!-- section colors -->
+    <array name="color_sections_colors">
+        <item>@color/md_red_500</item>
+        <item>@color/md_pink_500</item>
+        <item>@color/md_purple_500</item>
+        <item>@color/md_deep_purple_500</item>
+        <item>@color/md_indigo_500</item>
+        <item>@color/md_blue_500</item>
+        <item>@color/md_light_blue_500</item>
+        <item>@color/md_cyan_500</item>
+        <item>@color/md_teal_500</item>
+        <item>@color/md_green_500</item>
+        <item>@color/md_light_green_500</item>
+        <item>@color/md_lime_500</item>
+        <item>@color/md_yellow_500</item>
+        <item>@color/md_amber_500</item>
+        <item>@color/md_orange_500</item>
+        <item>@color/md_deep_orange_500</item>
+        <item>@color/md_brown_500</item>
+        <item>@color/md_grey_500</item>
+        <item>@color/md_blue_grey_500</item>
+    </array>
+
     <string name="red">Red</string>
     <string name="pink">Pink</string>
     <string name="purple">Purple</string>
@@ -28,7 +71,54 @@
     <string name="grey">Grey</string>
     <string name="blue_grey">Blue grey</string>
 
+    <string-array name="full_base_color_list">
+        <item>500</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+        <item>A100</item>
+        <item>A200</item>
+        <item>A400</item>
+        <item>A700</item>
+    </string-array>
+
+    <string-array name="base_color_list_to_900">
+        <item>500</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+    </string-array>
+
+    <string-array name="base_color_list_greys">
+        <item>500</item>
+        <item>50</item>
+        <item>100</item>
+        <item>200</item>
+        <item>300</item>
+        <item>400</item>
+        <item>600</item>
+        <item>700</item>
+        <item>800</item>
+        <item>900</item>
+        <item>1000</item>
+        <item>1000</item>
+    </string-array>
+
     <!-- menu -->
     <string name="card_menu_copy_color">Copy color to clipboard</string>
+    <string name="color_copied">Color copied to clipboard</string>
+    <string name="color_clipboard">Color %1$s %2$s</string>
 
 </resources>
