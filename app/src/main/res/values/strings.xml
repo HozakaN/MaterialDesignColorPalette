@@ -5,6 +5,11 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
+    <!-- menu -->
+    <string name="card_menu_copy_color">Copy color to clipboard</string>
+    <string name="color_copied">Color copied %s to clipboard</string>
+    <string name="color_clipboard">Color %1$s %2$s</string>
+
     <!-- navigation drawer sections -->
     <string-array name="color_sections_names">
         <item>@string/red</item>
@@ -115,10 +120,5 @@
         <item>1000</item>
         <item>1000</item>
     </string-array>
-
-    <!-- menu -->
-    <string name="card_menu_copy_color">Copy color to clipboard</string>
-    <string name="color_copied">Color copied to clipboard</string>
-    <string name="color_clipboard">Color %1$s %2$s</string>
 
 </resources>

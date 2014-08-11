@@ -42,7 +42,7 @@ public class ColorCard extends Card {
         mColorParentName = colorParentName;
         mColor = color;
 
-        CardHeader header = new CardHeader(context);
+        final CardHeader header = new CardHeader(context);
         header.setTitle(mColor.getBaseName());
         addCardHeader(header);
 
@@ -53,16 +53,19 @@ public class ColorCard extends Card {
     }
 
     public void copyColorToClipboard(String parentColorName, String colorBaseName, String colorHex) {
-        ClipboardManager clipboard = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
-        ClipData clip = ClipData.newPlainText(mContext.getString(R.string.color_clipboard, parentColorName, colorBaseName), colorHex);
+        final ClipboardManager clipboard
+                = (ClipboardManager) mContext.getSystemService(Context.CLIPBOARD_SERVICE);
+        final ClipData clip
+                = ClipData.newPlainText(mContext.getString(R.string.color_clipboard, parentColorName, colorBaseName), colorHex);
         clipboard.setPrimaryClip(clip);
 
-        Toast.makeText(mContext, R.string.color_copied, Toast.LENGTH_SHORT).show();
+        Toast.makeText(mContext, mContext.getString(R.string.color_copied, colorHex),
+                Toast.LENGTH_SHORT).show();
     }
 
     public static List<ColorCard> getColorCardList(Context context, String parentName,
                                                    List<PaletteColor> paletteColors) {
-        List<ColorCard> cardList = new ArrayList<ColorCard>(paletteColors.size());
+        final List<ColorCard> cardList = new ArrayList<ColorCard>(paletteColors.size());
         for (PaletteColor paletteColor : paletteColors) {
             cardList.add(new ColorCard(context, parentName, paletteColor));
         }
