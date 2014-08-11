@@ -1,4 +1,4 @@
-package fr.hozakan.materialdesigncolorpalette.card;
+package fr.hozakan.materialdesigncolorpalette.adapter;
 
 import android.content.Context;
 
