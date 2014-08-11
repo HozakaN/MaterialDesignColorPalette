@@ -7,7 +7,7 @@
 
     <!-- menu -->
     <string name="card_menu_copy_color">Copy color to clipboard</string>
-    <string name="color_copied">Color copied %s to clipboard</string>
+    <string name="color_copied">Color %s copied to clipboard</string>
     <string name="color_clipboard">Color %1$s %2$s</string>
 
     <!-- navigation drawer sections -->

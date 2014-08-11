@@ -7,11 +7,14 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.squareup.otto.Bus;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.hozakan.materialdesigncolorpalette.R;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
+import fr.hozakan.materialdesigncolorpalette.otto.CopyColorEvent;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.base.BaseCard;
@@ -19,6 +22,7 @@ import it.gmariotti.cardslib.library.internal.base.BaseCard;
 public class ColorCard extends Card {
 
     private final Context mContext;
+    private final Bus mBus;
     private final String mColorParentName;
     private final PaletteColor mColor;
 
@@ -28,8 +32,9 @@ public class ColorCard extends Card {
         public void onMenuItemClick(BaseCard baseCard, MenuItem menuItem) {
             switch(menuItem.getItemId()) {
                 case R.id.card_menu_copy_color:
-                    copyColorToClipboard(mColorParentName, mColor.getBaseName(),
-                            mColor.getHexString());
+//                    copyColorToClipboard(mColorParentName, mColor.getBaseName(),
+//                            mColor.getHexString());
+                    mBus.post(new CopyColorEvent(mColorParentName, mColor));
                     break;
                 default:
                     break;
@@ -37,9 +42,10 @@ public class ColorCard extends Card {
         }
     };
 
-    public ColorCard(Context context, String colorParentName, PaletteColor color) {
+    public ColorCard(Context context, Bus bus, String colorParentName, PaletteColor color) {
         super(context);
         mContext = context;
+        mBus = bus;
         mColorParentName = colorParentName;
         mColor = color;
 
@@ -64,11 +70,11 @@ public class ColorCard extends Card {
                 Toast.LENGTH_SHORT).show();
     }
 
-    public static List<ColorCard> getColorCardList(Context context, String parentName,
+    public static List<ColorCard> getColorCardList(Context context, Bus bus, String parentName,
                                                    List<PaletteColor> paletteColors) {
         final List<ColorCard> cardList = new ArrayList<ColorCard>(paletteColors.size());
         for (PaletteColor paletteColor : paletteColors) {
-            cardList.add(new ColorCard(context, parentName, paletteColor));
+            cardList.add(new ColorCard(context, bus, parentName, paletteColor));
         }
         return cardList;
     }

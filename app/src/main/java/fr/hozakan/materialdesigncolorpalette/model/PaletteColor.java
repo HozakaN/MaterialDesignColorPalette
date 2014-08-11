@@ -11,7 +11,7 @@ public class PaletteColor implements Parcelable {
 
     public PaletteColor(final int hex, final String baseName) {
         this.hex = hex;
-        this.hexString = String.format("#%06X", 0xFFFFFF & this.hex);
+        this.hexString = String.format("#%06x", 0xFFFFFF & this.hex);
         this.baseName = baseName;
     }
 

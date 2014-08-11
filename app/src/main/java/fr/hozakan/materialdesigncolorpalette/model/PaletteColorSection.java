@@ -45,24 +45,6 @@ public class PaletteColorSection implements Parcelable {
         return paletteColorList;
     }
 
-    public static List<PaletteColorSection> getPaletteColorSectionsList(
-            final String[] colorSectionsNames,
-            final int[] colorSectionsValues,
-            final String[][] baseColorNames,
-            final int[][] colorValues) {
-        if (colorSectionsNames.length != colorSectionsValues.length
-                || colorSectionsNames.length != baseColorNames.length
-                || colorSectionsNames.length != colorValues.length) {
-            throw new RuntimeException("Must supply one-to-one parameters.");
-        }
-        List<PaletteColorSection> colorList = new ArrayList<PaletteColorSection>();
-        for (int i = 0; i < colorSectionsNames.length; i++) {
-            colorList.add(new PaletteColorSection(colorSectionsNames[i], colorSectionsValues[i],
-                    baseColorNames[i], colorValues[i]));
-        }
-        return colorList;
-    }
-
     @Override
     public int describeContents() {
         return 0;

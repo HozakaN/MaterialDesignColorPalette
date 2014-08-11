@@ -11,8 +11,8 @@ android {
         applicationId "fr.hozakan.materialdesigncolorpalette"
         minSdkVersion 16
         targetSdkVersion 20
-        versionCode 4
-        versionName "0.2.0"
+        versionCode 5
+        versionName "0.2.1"
     }
     signingConfigs {
         release
@@ -53,4 +53,8 @@ dependencies {
     compile 'com.android.support:support-v4:20+'
 
     compile 'com.github.gabrielemariotti.cards:library:1.5.0'
+
+    compile 'com.squareup.dagger:dagger:+'
+    compile 'com.squareup.dagger:dagger-compiler:+'
+    compile 'com.squareup:otto:+'
 }

@@ -1,5 +1,6 @@
 package fr.hozakan.materialdesigncolorpalette;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,10 +8,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.squareup.otto.Bus;
+
 import java.util.List;
+
+import javax.inject.Inject;
 
 import fr.hozakan.materialdesigncolorpalette.card.ColorCard;
 import fr.hozakan.materialdesigncolorpalette.adapter.ColorCardAdapter;
+import fr.hozakan.materialdesigncolorpalette.dagger.BaseApplication;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColorSection;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 
@@ -24,6 +30,9 @@ public class PaletteFragment extends Fragment {
     private ListView mListView;
     private CardArrayAdapter mAdapter;
     private PaletteColorSection mPaletteColorSection = null;
+
+    @Inject
+    protected Bus mBus;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -60,12 +69,19 @@ public class PaletteFragment extends Fragment {
         }
     }
 
-    public void scollToTop() {
+    public void scrollToTop() {
         mListView.smoothScrollToPositionFromTop(0, 0, SCROLL_TO_TOP_MILLIS);
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        ((BaseApplication)activity.getApplication()).inject(this);
     }
 
     private List<ColorCard> getColorCardList() {
         return ColorCard.getColorCardList(getActivity().getApplicationContext(),
+                mBus,
                 mPaletteColorSection.getColorSectionName(),
                 mPaletteColorSection.getPaletteColorList());
     }

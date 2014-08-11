@@ -1,6 +1,9 @@
 package fr.hozakan.materialdesigncolorpalette;
 
 import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -14,11 +17,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
+
+import com.squareup.otto.Bus;
+import com.squareup.otto.Subscribe;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import fr.hozakan.materialdesigncolorpalette.adapter.DrawerAdapter;
+import fr.hozakan.materialdesigncolorpalette.dagger.BaseApplication;
+import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColorSection;
+import fr.hozakan.materialdesigncolorpalette.otto.CopyColorEvent;
+import fr.hozakan.materialdesigncolorpalette.service.PaletteService;
 
 public class ColorPaletteActivity extends Activity {
 
@@ -28,6 +41,12 @@ public class ColorPaletteActivity extends Activity {
     private static final String POSITION_KEY = "POSITION_KEY";
     private static final String DRAWER_TITLE_KEY = "DRAWER_TITLE_KEY";
     private static final String TITLE_KEY = "TITLE_KEY";
+
+    @Inject
+    protected PaletteService mService;
+
+    @Inject
+    protected Bus mBus;
 
     private PaletteFragment mFragment = null;
     private CharSequence mDrawerTitle = null;
@@ -55,16 +74,13 @@ public class ColorPaletteActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ((BaseApplication)getApplication()).inject(this);
+        mBus.register(this);
+
         setContentView(R.layout.activity_color_palette);
 
-        final String[] colorSectionsNames
-                = getResources().getStringArray(R.array.color_sections_names);
-        final int[] colorSectionsValues
-                = getResources().getIntArray(R.array.color_sections_colors);
-
-        mColorList = PaletteColorSection.getPaletteColorSectionsList(colorSectionsNames,
-                colorSectionsValues, getBaseColorNames(colorSectionsNames),
-                getColorValues(colorSectionsNames));
+        mColorList = mService.getPaletteColorSectionsList();
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.navigation_drawer);
         setupNavigationDrawer();
@@ -95,6 +111,12 @@ public class ColorPaletteActivity extends Activity {
             prefs.edit().putBoolean(FIRST_RUN, false).apply();
             mDrawerLayout.openDrawer(mDrawerList);
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        mBus.unregister(this);
+        super.onDestroy();
     }
 
     private void setupNavigationDrawer() {
@@ -134,7 +156,7 @@ public class ColorPaletteActivity extends Activity {
         final Bundle bundle = new Bundle();
         bundle.putParcelable(PaletteFragment.ARG_COLOR_SECTION, paletteColorSection);
         if (mPosition == position && fromClick) {
-            mFragment.scollToTop();
+            mFragment.scrollToTop();
         } else if (fromClick) {
             mPosition = position;
             mFragment.replaceColorCardList(paletteColorSection);
@@ -173,6 +195,20 @@ public class ColorPaletteActivity extends Activity {
         }
     }
 
+    @Subscribe
+    public void onCopyColor(CopyColorEvent event) {
+        final PaletteColor color = event.getColor();
+        final ClipboardManager clipboard
+                = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        final ClipData clip
+                = ClipData.newPlainText(getString(R.string.color_clipboard, event.getColorName(),
+                    color.getBaseName()), color.getHexString());
+        clipboard.setPrimaryClip(clip);
+
+        Toast.makeText(this, getString(R.string.color_copied, color.getHexString()),
+                Toast.LENGTH_SHORT).show();
+    }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
@@ -202,110 +238,5 @@ public class ColorPaletteActivity extends Activity {
         outState.putCharSequence(DRAWER_TITLE_KEY, mDrawerTitle);
         outState.putCharSequence(TITLE_KEY, mTitle);
         super.onSaveInstanceState(outState);
-    }
-
-    private String[][] getBaseColorNames(String[] colorSectionsNames) {
-        String[][] strArr = new String[colorSectionsNames.length][];
-        for (int i = 0; i < colorSectionsNames.length; i++) {
-            strArr[i] = getBaseColorNames(colorSectionsNames[i]);
-        }
-        return strArr;
-    }
-
-    private int[][] getColorValues(String[] colorSectionsNames) {
-        int[][] intArr = new int[colorSectionsNames.length][];
-        for (int i = 0; i < colorSectionsNames.length; i++) {
-            intArr[i] = getColorValues(colorSectionsNames[i]);
-        }
-        return intArr;
-    }
-
-    private String[] getBaseColorNames(String colorSectionName) {
-        Resources res = getResources();
-        if (getString(R.string.red).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.pink).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.purple).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.deep_purple).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.indigo).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.blue).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.light_blue).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.cyan).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.teal).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.green).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.light_green).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.lime).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.yellow).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.amber).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.orange).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.deep_orange).equals(colorSectionName)) {
-            return res.getStringArray(R.array.full_base_color_list);
-        } else if (getString(R.string.brown).equals(colorSectionName)) {
-            return res.getStringArray(R.array.base_color_list_to_900);
-        } else if (getString(R.string.grey).equals(colorSectionName)) {
-            return res.getStringArray(R.array.base_color_list_greys);
-        } else if (getString(R.string.blue_grey).equals(colorSectionName)) {
-            return res.getStringArray(R.array.base_color_list_to_900);
-        } else {
-            throw new RuntimeException("Invalid color section: " + colorSectionName);
-        }
-    }
-
-    private int[] getColorValues(String colorSectionName) {Resources res = getResources();
-        if (getString(R.string.red).equals(colorSectionName)) {
-            return res.getIntArray(R.array.reds);
-        } else if (getString(R.string.pink).equals(colorSectionName)) {
-            return res.getIntArray(R.array.pinks);
-        } else if (getString(R.string.purple).equals(colorSectionName)) {
-            return res.getIntArray(R.array.purples);
-        } else if (getString(R.string.deep_purple).equals(colorSectionName)) {
-            return res.getIntArray(R.array.deep_purples);
-        } else if (getString(R.string.indigo).equals(colorSectionName)) {
-            return res.getIntArray(R.array.indigos);
-        } else if (getString(R.string.blue).equals(colorSectionName)) {
-            return res.getIntArray(R.array.blues);
-        } else if (getString(R.string.light_blue).equals(colorSectionName)) {
-            return res.getIntArray(R.array.light_blues);
-        } else if (getString(R.string.cyan).equals(colorSectionName)) {
-            return res.getIntArray(R.array.cyans);
-        } else if (getString(R.string.teal).equals(colorSectionName)) {
-            return res.getIntArray(R.array.teals);
-        } else if (getString(R.string.green).equals(colorSectionName)) {
-            return res.getIntArray(R.array.greens);
-        } else if (getString(R.string.light_green).equals(colorSectionName)) {
-            return res.getIntArray(R.array.light_greens);
-        } else if (getString(R.string.lime).equals(colorSectionName)) {
-            return res.getIntArray(R.array.limes);
-        } else if (getString(R.string.yellow).equals(colorSectionName)) {
-            return res.getIntArray(R.array.yellows);
-        } else if (getString(R.string.amber).equals(colorSectionName)) {
-            return res.getIntArray(R.array.ambers);
-        } else if (getString(R.string.orange).equals(colorSectionName)) {
-            return res.getIntArray(R.array.oranges);
-        } else if (getString(R.string.deep_orange).equals(colorSectionName)) {
-            return res.getIntArray(R.array.deep_oranges);
-        } else if (getString(R.string.brown).equals(colorSectionName)) {
-            return res.getIntArray(R.array.browns);
-        } else if (getString(R.string.grey).equals(colorSectionName)) {
-            return res.getIntArray(R.array.greys);
-        } else if (getString(R.string.blue_grey).equals(colorSectionName)) {
-            return res.getIntArray(R.array.blue_greys);
-        } else {
-            throw new RuntimeException("Invalid color section: " + colorSectionName);
-        }
     }
 }
