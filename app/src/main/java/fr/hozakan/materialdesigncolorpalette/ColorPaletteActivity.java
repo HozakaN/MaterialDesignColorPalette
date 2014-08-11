@@ -97,22 +97,6 @@ public class ColorPaletteActivity extends Activity {
         }
     }
 
-    private String[][] getBaseColorNames(String[] colorSectionsNames) {
-        String[][] strArr = new String[colorSectionsNames.length][];
-        for (int i = 0; i < colorSectionsNames.length; i++) {
-            strArr[i] = getBaseColorNames(colorSectionsNames[i]);
-        }
-        return strArr;
-    }
-
-    private int[][] getColorValues(String[] colorSectionsNames) {
-        int[][] intArr = new int[colorSectionsNames.length][];
-        for (int i = 0; i < colorSectionsNames.length; i++) {
-            intArr[i] = getColorValues(colorSectionsNames[i]);
-        }
-        return intArr;
-    }
-
     private void setupNavigationDrawer() {
         mDrawerList.setAdapter(new DrawerAdapter(this, mColorList));
         mDrawerList.setOnItemClickListener(drawerClickListener);
@@ -120,17 +104,25 @@ public class ColorPaletteActivity extends Activity {
                 R.drawable.ic_drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
-                getActionBar().setTitle(mTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                doDrawerClosed();
             }
 
             public void onDrawerOpened(View drawerView) {
                 super.onDrawerOpened(drawerView);
-                getActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                doDrawerOpened();
             }
         };
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+    }
+
+    private void doDrawerClosed() {
+        getActionBar().setTitle(mTitle);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+    }
+
+    private void doDrawerOpened() {
+        getActionBar().setTitle(mDrawerTitle);
+        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 
     /* Swaps fragments in the main content view */
@@ -167,6 +159,12 @@ public class ColorPaletteActivity extends Activity {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
+
+        if (mDrawerLayout.isDrawerOpen(mDrawerList)) {
+            doDrawerOpened();
+        } else {
+            doDrawerClosed();
+        }
     }
 
     @Override
@@ -183,7 +181,7 @@ public class ColorPaletteActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    /* Called whenever we call invalidateOptionsMenu() */
+    /* Called on invalidateOptionsMenu() */
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         // If the nav drawer is open, hide action items related to the content view
@@ -198,6 +196,22 @@ public class ColorPaletteActivity extends Activity {
         outState.putCharSequence(DRAWER_TITLE_KEY, mDrawerTitle);
         outState.putCharSequence(TITLE_KEY, mTitle);
         super.onSaveInstanceState(outState);
+    }
+
+    private String[][] getBaseColorNames(String[] colorSectionsNames) {
+        String[][] strArr = new String[colorSectionsNames.length][];
+        for (int i = 0; i < colorSectionsNames.length; i++) {
+            strArr[i] = getBaseColorNames(colorSectionsNames[i]);
+        }
+        return strArr;
+    }
+
+    private int[][] getColorValues(String[] colorSectionsNames) {
+        int[][] intArr = new int[colorSectionsNames.length][];
+        for (int i = 0; i < colorSectionsNames.length; i++) {
+            intArr[i] = getColorValues(colorSectionsNames[i]);
+        }
+        return intArr;
     }
 
     private String[] getBaseColorNames(String colorSectionName) {
