@@ -1,4 +1,4 @@
-package fr.hozakan.materialdesigncolorpalette.model;
+package fr.hozakan.materialdesigncolorpalette.card;
 
 import android.content.ClipData;
 import android.content.ClipboardManager;
@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.hozakan.materialdesigncolorpalette.R;
+import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardHeader;
 import it.gmariotti.cardslib.library.internal.base.BaseCard;

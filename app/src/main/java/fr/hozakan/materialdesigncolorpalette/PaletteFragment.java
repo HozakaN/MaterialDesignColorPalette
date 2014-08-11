@@ -9,7 +9,7 @@ import android.widget.ListView;
 
 import java.util.List;
 
-import fr.hozakan.materialdesigncolorpalette.model.ColorCard;
+import fr.hozakan.materialdesigncolorpalette.card.ColorCard;
 import fr.hozakan.materialdesigncolorpalette.adapter.ColorCardAdapter;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColorSection;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
