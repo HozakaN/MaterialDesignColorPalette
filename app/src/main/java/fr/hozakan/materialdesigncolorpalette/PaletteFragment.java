@@ -65,7 +65,7 @@ public class PaletteFragment extends Fragment {
     }
 
     private List<ColorCard> getColorCardList() {
-        return ColorCard.getColorCardList(getActivity(),
+        return ColorCard.getColorCardList(getActivity().getApplicationContext(),
                 mPaletteColorSection.getColorSectionName(),
                 mPaletteColorSection.getPaletteColorList());
     }
