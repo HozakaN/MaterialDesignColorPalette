@@ -62,7 +62,7 @@ public class ColorPaletteActivity extends Activity {
         final int[] colorSectionsValues
                 = getResources().getIntArray(R.array.color_sections_colors);
 
-        mColorList = PaletteColorSection.getPalleteColorSectionsList(colorSectionsNames,
+        mColorList = PaletteColorSection.getPaletteColorSectionsList(colorSectionsNames,
                 colorSectionsValues, getBaseColorNames(colorSectionsNames),
                 getColorValues(colorSectionsNames));
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);

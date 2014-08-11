@@ -45,7 +45,7 @@ public class PaletteColorSection implements Parcelable {
         return paletteColorList;
     }
 
-    public static List<PaletteColorSection> getPalleteColorSectionsList(
+    public static List<PaletteColorSection> getPaletteColorSectionsList(
             final String[] colorSectionsNames,
             final int[] colorSectionsValues,
             final String[][] baseColorNames,
