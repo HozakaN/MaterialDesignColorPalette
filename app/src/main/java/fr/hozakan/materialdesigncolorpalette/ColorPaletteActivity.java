@@ -1,7 +1,6 @@
 package fr.hozakan.materialdesigncolorpalette;
 
 import android.app.Activity;
-import android.app.Fragment;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -30,7 +29,7 @@ public class ColorPaletteActivity extends Activity {
     private static final String DRAWER_TITLE_KEY = "DRAWER_TITLE_KEY";
     private static final String TITLE_KEY = "TITLE_KEY";
 
-    private Fragment mFragment = null;
+    private PaletteFragment mFragment = null;
     private CharSequence mDrawerTitle = null;
     private CharSequence mTitle = null;
     private ListView mDrawerList;
@@ -74,7 +73,8 @@ public class ColorPaletteActivity extends Activity {
         getActionBar().setHomeButtonEnabled(true);
 
         if (savedInstanceState != null) {
-            mFragment = getFragmentManager().getFragment(savedInstanceState, FRAGMENT_KEY);
+            mFragment = (PaletteFragment) getFragmentManager()
+                    .getFragment(savedInstanceState, FRAGMENT_KEY);
             mPosition = savedInstanceState.getInt(POSITION_KEY);
             mDrawerTitle = savedInstanceState.getCharSequence(DRAWER_TITLE_KEY);
             mTitle = savedInstanceState.getCharSequence(TITLE_KEY);
@@ -86,7 +86,7 @@ public class ColorPaletteActivity extends Activity {
             mTitle = getTitle();
         }
 
-        selectItem(mPosition, mFragment);
+        selectItem(mPosition, mFragment, false);
 
         final SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
         final boolean firstRun
@@ -126,23 +126,29 @@ public class ColorPaletteActivity extends Activity {
     }
 
     /* Swaps fragments in the main content view */
-    private void selectItem(final int position, final Fragment fragment) {
-        mPosition = position;
-        final PaletteColorSection paletteColorSection = mColorList.get(mPosition);
+    private void selectItem(final int position, final PaletteFragment fragment,
+                            boolean fromClick) {
+        final PaletteColorSection paletteColorSection = mColorList.get(position);
         final String sectionName = paletteColorSection.getColorSectionName();
         final int sectionValue = paletteColorSection.getColorSectionValue();
-
-        if (fragment == null) {
-            mFragment = new PaletteFragment();
-            Bundle bundle = new Bundle();
-            bundle.putParcelable(PaletteFragment.ARG_COLOR_SECTION, paletteColorSection);
-            mFragment.setArguments(bundle);
+        final Bundle bundle = new Bundle();
+        bundle.putParcelable(PaletteFragment.ARG_COLOR_SECTION, paletteColorSection);
+        if (mPosition == position && fromClick) {
+            mFragment.scollToTop();
+        } else if (fromClick) {
+            mPosition = position;
+            mFragment.replaceColorCardList(paletteColorSection);
         } else {
-            mFragment = fragment;
+            mPosition = position;
+            if (fragment == null) {
+                mFragment = new PaletteFragment();
+                mFragment.setArguments(bundle);
+            } else {
+                mFragment = fragment;
+            }
+            getFragmentManager().beginTransaction().replace(R.id.container, mFragment,
+                    FRAGMENT_TAG).commit();
         }
-        getFragmentManager().beginTransaction().replace(R.id.container, mFragment,
-                FRAGMENT_TAG).commit();
-
         // Highlight the selected item, update the title, and close the drawer
         mDrawerList.setItemChecked(mPosition, true);
         setTitle(sectionName);
@@ -151,7 +157,7 @@ public class ColorPaletteActivity extends Activity {
     }
 
     private void selectItem(final int position) {
-        selectItem(position, null);
+        selectItem(position, null, true);
     }
 
     @Override
