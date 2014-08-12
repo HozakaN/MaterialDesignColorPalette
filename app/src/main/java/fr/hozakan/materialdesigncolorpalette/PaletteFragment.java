@@ -3,6 +3,7 @@ package fr.hozakan.materialdesigncolorpalette;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class PaletteFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        Log.d("TAAAAAAAG", "DEBUUUUUUG");
         if (savedInstanceState != null) {
             mPaletteColorSection = savedInstanceState.getParcelable(SECTION_KEY);
         }

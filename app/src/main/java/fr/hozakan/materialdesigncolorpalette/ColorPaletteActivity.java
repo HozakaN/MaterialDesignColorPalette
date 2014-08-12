@@ -153,8 +153,6 @@ public class ColorPaletteActivity extends Activity {
         final PaletteColorSection paletteColorSection = mColorList.get(position);
         final String sectionName = paletteColorSection.getColorSectionName();
         final int sectionValue = paletteColorSection.getColorSectionValue();
-        final Bundle bundle = new Bundle();
-        bundle.putParcelable(PaletteFragment.ARG_COLOR_SECTION, paletteColorSection);
         if (mPosition == position && fromClick) {
             mFragment.scrollToTop();
         } else if (fromClick) {
@@ -163,6 +161,8 @@ public class ColorPaletteActivity extends Activity {
         } else {
             mPosition = position;
             if (fragment == null) {
+                final Bundle bundle = new Bundle();
+                bundle.putParcelable(PaletteFragment.ARG_COLOR_SECTION, paletteColorSection);
                 mFragment = new PaletteFragment();
                 mFragment.setArguments(bundle);
             } else {
