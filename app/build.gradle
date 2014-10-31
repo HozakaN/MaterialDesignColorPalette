@@ -4,15 +4,15 @@ android {
 //    compileSdkVersion 20
 //    buildToolsVersion "20.0.0"
 
-    compileSdkVersion 19
-    buildToolsVersion "19.1.0"
+    compileSdkVersion 21
+    buildToolsVersion "21.0.1"
 
     defaultConfig {
         applicationId "fr.hozakan.materialdesigncolorpalette"
         minSdkVersion 16
-        targetSdkVersion 20
+        targetSdkVersion 21
         versionCode 6
-        versionName "0.2.2"
+        versionName "0.3.0"
     }
     signingConfigs {
         release
@@ -50,7 +50,7 @@ if (propFile.canRead()){
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     // You must install or update the Support Repository through the SDK manager to use this dependency.
-    compile 'com.android.support:support-v4:20+'
+    compile "com.android.support:appcompat-v7:21.0.+"
 
     compile 'com.github.gabrielemariotti.cards:library:1.5.0'
 

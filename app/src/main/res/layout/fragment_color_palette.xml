@@ -5,6 +5,7 @@
     android:id="@+id/palette_card_list"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
+    android:scrollbarStyle="outsideOverlay"
     android:paddingLeft="6dp"
     android:paddingRight="6dp"
     android:paddingTop="12dp" />

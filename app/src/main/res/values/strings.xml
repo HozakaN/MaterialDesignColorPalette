@@ -6,6 +6,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <!-- menu -->
+    <string name="menu_go_to_preview">Go to preview</string>
+
+    <string name="card_menu_actionbar_color_preview">Use as actionbar color preview</string>
+    <string name="card_menu_color_preview">Use as color preview</string>
+    <string name="card_menu_remove_actionbar_color_preview">Do not use as actionbar color preview</string>
+    <string name="card_menu_remove_color_preview">Do not use as color preview</string>
     <string name="card_menu_copy_color">Copy color to clipboard</string>
     <string name="color_copied">Color %s copied to clipboard</string>
     <string name="color_clipboard">Color %1$s %2$s</string>
@@ -54,6 +60,29 @@
         <item>@color/md_brown_500</item>
         <item>@color/md_grey_500</item>
         <item>@color/md_blue_grey_500</item>
+    </array>
+
+    <!-- section colors -->
+    <array name="dark_color_sections_colors">
+        <item>@color/md_red_700</item>
+        <item>@color/md_pink_700</item>
+        <item>@color/md_purple_700</item>
+        <item>@color/md_deep_purple_700</item>
+        <item>@color/md_indigo_700</item>
+        <item>@color/md_blue_700</item>
+        <item>@color/md_light_blue_700</item>
+        <item>@color/md_cyan_700</item>
+        <item>@color/md_teal_700</item>
+        <item>@color/md_green_700</item>
+        <item>@color/md_light_green_700</item>
+        <item>@color/md_lime_700</item>
+        <item>@color/md_yellow_700</item>
+        <item>@color/md_amber_700</item>
+        <item>@color/md_orange_700</item>
+        <item>@color/md_deep_orange_700</item>
+        <item>@color/md_brown_700</item>
+        <item>@color/md_grey_700</item>
+        <item>@color/md_blue_grey_700</item>
     </array>
 
     <string name="red">Red</string>
