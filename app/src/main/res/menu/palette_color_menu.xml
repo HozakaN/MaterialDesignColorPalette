@@ -1,0 +1,8 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="fr.hozakan.fr.hozakan.materialdesigncolorpalette.color_list.PaletteFragment">
+    <!--<item android:id="@+id/menu_go_to_preview"-->
+        <!--android:title="@string/menu_go_to_preview" />-->
+    <!--<item android:id="@+id/menu_go_to_special"-->
+        <!--android:title="GoToSpecial" />-->
+</menu>

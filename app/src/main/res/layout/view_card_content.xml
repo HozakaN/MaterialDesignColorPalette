@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/color_text"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/color_content_margin"
+        android:textSize="@dimen/color_content_text" />
+
+    <ImageView
+        android:id="@+id/add_to_content_image"
+        android:layout_width="@dimen/color_icon_image_size"
+        android:layout_height="@dimen/color_icon_image_size"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="fitStart" />
+
+    <ImageView
+        android:id="@+id/set_header_image"
+        android:layout_width="@dimen/color_icon_image_size"
+        android:layout_height="@dimen/color_icon_image_size"
+        android:src="@drawable/ic_launcher"
+        android:scaleType="fitStart" />
+
+</merge>

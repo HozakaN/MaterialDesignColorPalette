@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--<it.gmariotti.cardslib.library.extra.dragdroplist.view.CardListDragDropView-->
+    <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:card="http://schemas.android.com/apk/res-auto"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:layout_marginTop="10dp"-->
+    <!--android:id="@+id/palette_preview_color_list"-->
+    <!--card:list_card_layout_resourceID="@layout/carddemo_extras_list_card_dragdrop_layout"/>-->
+
+<it.gmariotti.cardslib.library.view.CardListView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/palette_preview_color_list"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent" />

@@ -11,7 +11,7 @@ android {
         applicationId "fr.hozakan.materialdesigncolorpalette"
         minSdkVersion 16
         targetSdkVersion 21
-        versionCode 6
+        versionCode 7
         versionName "0.3.0"
     }
     signingConfigs {
