@@ -3,6 +3,7 @@ package fr.hozakan.materialdesigncolorpalette.color_list;
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -25,6 +26,8 @@ import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColorSection;
 import fr.hozakan.materialdesigncolorpalette.service.PaletteService;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
+import it.gmariotti.cardslib.library.recyclerview.internal.CardArrayRecyclerViewAdapter;
+import it.gmariotti.cardslib.library.recyclerview.view.CardRecyclerView;
 
 public class PaletteFragment extends Fragment {
 
@@ -33,8 +36,8 @@ public class PaletteFragment extends Fragment {
     private static final String SECTION_KEY = "SECTION_KEY";
     private static final int SCROLL_TO_TOP_MILLIS = 300;
 
-    private ListView mListView;
-    private CardArrayAdapter mAdapter;
+    private CardRecyclerView mListView;
+    private CardArrayRecyclerViewAdapter mAdapter;
     private PaletteColorSection mPaletteColorSection = null;
 
     @Inject
@@ -46,7 +49,7 @@ public class PaletteFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        return mListView = (ListView) inflater.inflate(R.layout.fragment_color_palette, container, false);
+        return mListView = (CardRecyclerView) inflater.inflate(R.layout.fragment_color_palette, container, false);
     }
 
     @Override
@@ -55,8 +58,8 @@ public class PaletteFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         if (savedInstanceState != null) {
             mPaletteColorSection = savedInstanceState.getParcelable(SECTION_KEY);
@@ -66,6 +69,7 @@ public class PaletteFragment extends Fragment {
         }
         final List<ColorCard> colorCardList = getColorCardList();
         mAdapter = new ColorCardAdapter<ColorCard>(getActivity(), colorCardList);
+        mListView.setLayoutManager(new LinearLayoutManager(getActivity()));
         mListView.setAdapter(mAdapter);
     }
 
@@ -80,13 +84,14 @@ public class PaletteFragment extends Fragment {
         mAdapter.clear();
         mAdapter.addAll(getColorCardList());
         mAdapter.notifyDataSetChanged();
-        if (mAdapter.getCount() > 0) {
-            mListView.setSelection(0);
+        if (mAdapter.getItemCount() > 0) {
+//            mListView.setSelection(0);
         }
     }
 
     public void scrollToTop() {
-        mListView.smoothScrollToPositionFromTop(0, 0, SCROLL_TO_TOP_MILLIS);
+//        mListView.smoothScrollToPositionFromTop(0, 0, SCROLL_TO_TOP_MILLIS);
+        mListView.smoothScrollToPosition(0);
     }
 
     @Override

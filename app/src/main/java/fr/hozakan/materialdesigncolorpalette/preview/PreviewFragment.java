@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,7 +39,7 @@ public class PreviewFragment extends Fragment {
 
     private View mScreenBackground;
     private View mActionBarPreview;
-    private ListView mListView;
+    private RecyclerView mListView;
     private ColorCardAdapter<PreviewColorCard> mAdapter;
 
 
@@ -55,7 +56,7 @@ public class PreviewFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         setHasOptionsMenu(true);
-        return mListView = (ListView) inflater.inflate(R.layout.fragment_color_palette, container, false);
+        return mListView = (RecyclerView) inflater.inflate(R.layout.fragment_color_palette, container, false);
     }
 
     @Override

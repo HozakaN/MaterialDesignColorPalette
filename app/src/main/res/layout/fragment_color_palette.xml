@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<it.gmariotti.cardslib.library.view.CardListView
+<it.gmariotti.cardslib.library.recyclerview.view.CardRecyclerView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/palette_card_list"
     android:layout_height="wrap_content"

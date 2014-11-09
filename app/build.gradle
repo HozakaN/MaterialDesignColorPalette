@@ -55,7 +55,9 @@ dependencies {
     // You must install or update the Support Repository through the SDK manager to use this dependency.
     compile "com.android.support:appcompat-v7:21.0.+"
 
-    compile 'com.github.gabrielemariotti.cards:library:1.5.0'
+    compile 'com.github.gabrielemariotti.cards:cardslib-core:2.0.0'
+    compile 'com.github.gabrielemariotti.cards:cardslib-cards:2.0.0'
+    compile 'com.github.gabrielemariotti.cards:cardslib-recyclerview:2.0.0'
 
     compile 'com.squareup.dagger:dagger:+'
     compile 'com.squareup.dagger:dagger-compiler:+'
