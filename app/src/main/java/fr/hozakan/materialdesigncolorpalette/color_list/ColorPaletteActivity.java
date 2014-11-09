@@ -169,12 +169,12 @@ public class ColorPaletteActivity extends ActionBarActivity {
     }
 
     private void doDrawerClosed() {
-        getSupportActionBar().setTitle(mTitle);
+//        getSupportActionBar().setTitle(mTitle);
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 
     private void doDrawerOpened() {
-        getSupportActionBar().setTitle(mDrawerTitle);
+//        getSupportActionBar().setTitle(mDrawerTitle);
         invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 
@@ -210,6 +210,7 @@ public class ColorPaletteActivity extends ActionBarActivity {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(darkColorSectionValue);
+//            mDrawerLayout.setStatusBarBackgroundColor(darkColorSectionValue);
         }
 
         mDrawerLayout.closeDrawer(mDrawerList);
