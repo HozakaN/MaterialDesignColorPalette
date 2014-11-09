@@ -8,4 +8,4 @@
     android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
     android:paddingRight="?android:attr/listPreferredItemPaddingRight"
     android:minHeight="?android:attr/listPreferredItemHeightSmall"
-    android:textColor="@color/md_white_1000" />
+    android:textColor="@color/md_grey_900" />
