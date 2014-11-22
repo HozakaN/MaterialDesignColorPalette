@@ -12,7 +12,7 @@ import java.util.List;
 import fr.hozakan.materialdesigncolorpalette.R;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColorSection;
-import fr.hozakan.materialdesigncolorpalette.otto.ActionbarPreviewColorRemovedEvent;
+import fr.hozakan.materialdesigncolorpalette.otto.PrimaryColorRemovedEvent;
 
 /**
  * Created by gimbert on 2014-08-11.
@@ -20,10 +20,10 @@ import fr.hozakan.materialdesigncolorpalette.otto.ActionbarPreviewColorRemovedEv
 public class PaletteService {
 
     private static final String SHARED_PREFERENCES_ID = "fr.hozakan.materialdesigncolorpalette.SharedPreferences";
-    private static final String ACTIONBAR_PREVIEW_COLOR = "fr.hozakan.materialdesigncolorpalette.ActionBarPreviewColor";
+    private static final String PRIMARY_COLOR = "fr.hozakan.materialdesigncolorpalette.ActionBarPreviewColor";
     private static final String PREVIEW_COLORS = "fr.hozakan.materialdesigncolorpalette.PreviewColors";
 
-    private static PaletteColor mActionBarPreviewColor;
+    private static PaletteColor mPrimaryColor;
     private static List<PaletteColor> mPreviewColors;
     private static List<PaletteColorSection> mColorList;
     private static boolean initialized = false;
@@ -40,14 +40,14 @@ public class PaletteService {
 
             final SharedPreferences prefs = getSharedPreferences();
 
-            String actionbarPreviewColor = prefs.getString(ACTIONBAR_PREVIEW_COLOR, "");
+            String actionbarPreviewColor = prefs.getString(PRIMARY_COLOR, "");
             String previewColors = prefs.getString(PREVIEW_COLORS, "");
 
             if (actionbarPreviewColor.length() > 0) {
                 PaletteColor color = findColor(actionbarPreviewColor);
                 if (color != null) {
-                    color.setActionBarPreviewColor(true);
-                    mActionBarPreviewColor = color;
+                    color.setPrimaryColor(true);
+                    mPrimaryColor = color;
                 }
             }
 
@@ -245,38 +245,37 @@ public class PaletteService {
     }
 
     public PaletteColor getActionbarPreviewColor() {
-        return mActionBarPreviewColor;
+        return mPrimaryColor;
     }
 
     public List<PaletteColor> getPreviewColors() {
         return mPreviewColors;
     }
 
-    public boolean setActionBarPreviewColor(PaletteColor color) {
+    public boolean setPrimaryColor(PaletteColor color) {
         final SharedPreferences prefs = getSharedPreferences();
-        PaletteColor oldAbPreviewColor = mActionBarPreviewColor;
+        PaletteColor oldPrimary = mPrimaryColor;
         SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(ACTIONBAR_PREVIEW_COLOR, color.getHexString());
+        editor.putString(PRIMARY_COLOR, color.getHexString());
         editor.commit();
-        color.setActionBarPreviewColor(true);
-        this.mActionBarPreviewColor = color;
+        color.setPrimaryColor(true);
+        this.mPrimaryColor = color;
 
-        if (oldAbPreviewColor != null) {
-            oldAbPreviewColor.setActionBarPreviewColor(false);
-            mBus.post(new ActionbarPreviewColorRemovedEvent(oldAbPreviewColor));
+        if (oldPrimary != null) {
+            oldPrimary.setPrimaryColor(false);
+//            mBus.post(new PrimaryColorRemovedEvent(oldPrimary));
         }
         return true;
     }
 
     public boolean resetActionBarPreviewColor() {
-
-        if (mActionBarPreviewColor != null) {
+        if (mPrimaryColor != null) {
             final SharedPreferences prefs = getSharedPreferences();
             SharedPreferences.Editor editor = prefs.edit();
-            editor.putString(ACTIONBAR_PREVIEW_COLOR, "");
+            editor.putString(PRIMARY_COLOR, "");
             editor.commit();
-            mActionBarPreviewColor.setActionBarPreviewColor(false);
-            mActionBarPreviewColor = null;
+            mPrimaryColor.setPrimaryColor(false);
+            mPrimaryColor = null;
             return true;
         }
         return false;

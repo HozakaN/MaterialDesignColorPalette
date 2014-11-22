@@ -8,22 +8,38 @@
     android:fitsSystemWindows="true"
     tools:context=".ColorPaletteActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <!--<android.support.v4.widget.DrawerLayout-->
+        <!--android:id="@+id/right_drawer_layout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:fitsSystemWindows="true">-->
 
-        <include layout="@layout/toolbar"/>
-
-        <FrameLayout
-            android:id="@+id/container"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </LinearLayout>
+            <include layout="@layout/toolbar"/>
 
-    <!-- xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
+
+        <!--<ListView-->
+            <!--android:id="@+id/right_navigation_drawer"-->
+            <!--android:layout_width="@dimen/navigation_drawer_width"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_gravity="end"-->
+            <!--android:choiceMode="singleChoice"-->
+            <!--android:divider="@android:color/transparent"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:background="@color/md_white_1000" />-->
+
+    <!--</android.support.v4.widget.DrawerLayout>-->
+
     <ListView
         android:id="@+id/navigation_drawer"
         android:layout_width="@dimen/navigation_drawer_width"

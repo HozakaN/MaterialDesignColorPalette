@@ -32,7 +32,7 @@ import fr.hozakan.materialdesigncolorpalette.adapter.DrawerAdapter;
 import fr.hozakan.materialdesigncolorpalette.dagger.BaseApplication;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColorSection;
-import fr.hozakan.materialdesigncolorpalette.otto.ActionbarPreviewColorRemovedEvent;
+import fr.hozakan.materialdesigncolorpalette.otto.PrimaryColorRemovedEvent;
 import fr.hozakan.materialdesigncolorpalette.otto.AddActionbarPreviewColorEvent;
 import fr.hozakan.materialdesigncolorpalette.otto.AddPreviewColorEvent;
 import fr.hozakan.materialdesigncolorpalette.otto.CopyColorEvent;
@@ -170,12 +170,12 @@ public class ColorPaletteActivity extends ActionBarActivity {
 
     private void doDrawerClosed() {
 //        getSupportActionBar().setTitle(mTitle);
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+//        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 
     private void doDrawerOpened() {
 //        getSupportActionBar().setTitle(mDrawerTitle);
-        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+//        invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
     }
 
     /* Swaps fragments in the main content view */
@@ -245,13 +245,14 @@ public class ColorPaletteActivity extends ActionBarActivity {
 
         Toast.makeText(this, getString(R.string.color_copied, color.getHexString()),
                 Toast.LENGTH_SHORT).show();
+
     }
 
     @Subscribe
     public void onAddActionbarPreviewColor(AddActionbarPreviewColorEvent event) {
-        if (mService.setActionBarPreviewColor(event.color)) {
-            event.color.setActionBarPreviewColor(true);
-            mFragment.updateColorCardElement(event.color);
+        if (mService.setPrimaryColor(event.color)) {
+            event.color.setPrimaryColor(true);
+//            mFragment.updateColorCardElement(event.color);
 
         }
     }
@@ -259,22 +260,22 @@ public class ColorPaletteActivity extends ActionBarActivity {
     @Subscribe
     public void onRemoveActionBarPreviewColor(RemoveActionbarPreviewColorEvent event) {
         if (mService.resetActionBarPreviewColor()) {
-            event.color.setActionBarPreviewColor(false);
-            mFragment.updateColorCardElement(event.color);
+            event.color.setPrimaryColor(false);
+//            mFragment.updateColorCardElement(event.color);
         }
     }
 
     @Subscribe
-    public void onActionBarPreviewColorRemoved(ActionbarPreviewColorRemovedEvent event) {
-        event.color.setActionBarPreviewColor(false);
-        mFragment.updateColorCardElement(event.color);
+    public void onPrimaryColorRemoved(PrimaryColorRemovedEvent event) {
+        event.color.setPrimaryColor(false);
+//        mFragment.updateColorCardElement(event.color);
     }
 
     @Subscribe
     public void onAddPreviewColor(AddPreviewColorEvent event) {
         if (mService.addPreviewColor(event.color)) {
             event.color.setPreviewColor(true);
-            mFragment.updateColorCardElement(event.color);
+//            mFragment.updateColorCardElement(event.color);
         }
     }
 
@@ -282,7 +283,7 @@ public class ColorPaletteActivity extends ActionBarActivity {
     public void onRemovePreviewColor(RemovePreviewColorEvent event) {
         if (mService.removePreviewColor(event.color)) {
             event.color.setPreviewColor(false);
-            mFragment.updateColorCardElement(event.color);
+//            mFragment.updateColorCardElement(event.color);
         }
     }
 

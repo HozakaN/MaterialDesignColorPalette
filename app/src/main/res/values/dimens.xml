@@ -11,4 +11,21 @@
 
     <dimen name="color_content_text">16sp</dimen>
     <dimen name="color_content_margin">16dp</dimen>
+
+    <dimen name="list_color_padding_left">8dp</dimen>
+    <dimen name="list_color_padding_right">8dp</dimen>
+    <dimen name="list_color_padding_top">4dp</dimen>
+    <dimen name="list_color_padding_bottom">4dp</dimen>
+
+    <dimen name="color_card_content_padding">16dp</dimen>
+    <dimen name="color_card_margin_top">4dp</dimen>
+    <dimen name="color_card_margin_bottom">4dp</dimen>
+    <dimen name="color_card_height">125dp</dimen>
+    <dimen name="color_card_color_height">77dp</dimen>
+    <!--<dimen name="color_card_text_height">35dp</dimen>-->
+    <dimen name="color_card_actions_height">48dp</dimen>
+    <dimen name="color_card_corner_radius">0dp</dimen>
+
+    <dimen name="card_color_action_width">48dp</dimen>
+    <dimen name="card_color_action_height">48dp</dimen>
 </resources>

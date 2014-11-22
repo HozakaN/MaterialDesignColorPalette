@@ -1,5 +1,6 @@
 package fr.hozakan.materialdesigncolorpalette.dagger;
 
+import android.content.ClipboardManager;
 import android.content.Context;
 
 import com.squareup.otto.Bus;
@@ -45,6 +46,11 @@ public class PaletteColorModule {
     @Singleton
     public Bus provideBus() {
         return new Bus(ThreadEnforcer.ANY);
+    }
+
+    @Provides
+    public ClipboardManager provideClipboardManager() {
+        return (ClipboardManager) mApp.getSystemService(Context.CLIPBOARD_SERVICE);
     }
 
 }

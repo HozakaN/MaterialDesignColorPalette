@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_card_title_dark_color">@color/md_black_1000</color>
+    <color name="color_card_title_light_color">@color/md_white_1000</color>
+
+    <color name="color_card_content_dark_color">@color/md_grey_900</color>
+    <color name="color_card_content_light_color">@color/md_white_1000</color>
+
+    <color name="color_car_separator_dark_color">@android:color/darker_gray</color>
+    <color name="color_car_separator_light_color">@color/md_white_1000</color>
+</resources>

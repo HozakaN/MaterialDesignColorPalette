@@ -16,6 +16,6 @@ public class PaletteColorApplication extends BaseApplication {
     }
 
     private void foo(AddActionbarPreviewColorEvent event) {
-        event.color.setActionBarPreviewColor(true);
+        event.color.setPrimaryColor(true);
     }
 }

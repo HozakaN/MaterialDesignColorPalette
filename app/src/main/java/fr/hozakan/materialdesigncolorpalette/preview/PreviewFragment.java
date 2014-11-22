@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 
 import com.squareup.otto.Bus;
 
@@ -18,10 +17,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import fr.hozakan.materialdesigncolorpalette.R;
-import fr.hozakan.materialdesigncolorpalette.adapter.ColorCardAdapter;
-import fr.hozakan.materialdesigncolorpalette.card.ColorCard;
-import fr.hozakan.materialdesigncolorpalette.card.ColorCardTools;
-import fr.hozakan.materialdesigncolorpalette.card.PreviewColorCard;
 import fr.hozakan.materialdesigncolorpalette.dagger.BaseApplication;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
 import fr.hozakan.materialdesigncolorpalette.service.PaletteService;
@@ -40,7 +35,7 @@ public class PreviewFragment extends Fragment {
     private View mScreenBackground;
     private View mActionBarPreview;
     private RecyclerView mListView;
-    private ColorCardAdapter<PreviewColorCard> mAdapter;
+//    private ColorCardAdapter<PreviewColorCard> mAdapter;
 
 
     public static PreviewFragment newInstance() {
@@ -75,18 +70,18 @@ public class PreviewFragment extends Fragment {
 
         PaletteColor actionbarColor = mService.getActionbarPreviewColor();
         List<PaletteColor> previewColors = mService.getPreviewColors();
-        mAdapter = new ColorCardAdapter<PreviewColorCard>(getActivity(), getColorCardList(previewColors));
-        mListView.setAdapter(mAdapter);
+//        mAdapter = new ColorCardAdapter<PreviewColorCard>(getActivity(), getColorCardList(previewColors));
+//        mListView.setAdapter(mAdapter);
 
         final Drawable d = new ColorDrawable(actionbarColor.getHex());
         getActivity().getActionBar().setBackgroundDrawable(d);
     }
 
 
-    private List<PreviewColorCard> getColorCardList(List<PaletteColor> previewColors) {
-        return ColorCardTools.getColorCardList(getActivity().getApplicationContext(),
-                mBus,
-                previewColors);
-    }
+//    private List<PreviewColorCard> getColorCardList(List<PaletteColor> previewColors) {
+//        return ColorCardTools.getColorCardList(getActivity().getApplicationContext(),
+//                mBus,
+//                previewColors);
+//    }
 
 }

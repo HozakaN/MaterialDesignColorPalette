@@ -10,14 +10,14 @@ public class PaletteColor implements Parcelable {
     private final String baseName;
     private final String colorSectionName;
     private boolean isPreviewColor;
-    private boolean isActionBarPreviewColor;
+    private boolean isPrimaryColor;
 
-    public PaletteColor(String colorSectionName, final int hex, final String baseName, boolean isActionBarPreviewColor, boolean isPreviewColor) {
+    public PaletteColor(String colorSectionName, final int hex, final String baseName, boolean isPrimaryColor, boolean isPreviewColor) {
         this.colorSectionName = colorSectionName;
         this.hex = hex;
         this.hexString = intToStringHex(this.hex);
         this.baseName = baseName;
-        this.isActionBarPreviewColor = isActionBarPreviewColor;
+        this.isPrimaryColor = isPrimaryColor;
         this.isPreviewColor = isPreviewColor;
     }
 
@@ -33,16 +33,16 @@ public class PaletteColor implements Parcelable {
         return isPreviewColor;
     }
 
-    public boolean isActionBarPreviewColor() {
-        return isActionBarPreviewColor;
+    public boolean isPrimaryColor() {
+        return isPrimaryColor;
     }
 
     public void setPreviewColor(boolean isPreviewColor) {
         this.isPreviewColor = isPreviewColor;
     }
 
-    public void setActionBarPreviewColor(boolean isActionBarPreviewColor) {
-        this.isActionBarPreviewColor = isActionBarPreviewColor;
+    public void setPrimaryColor(boolean isPrimaryColor) {
+        this.isPrimaryColor = isPrimaryColor;
     }
 
     public String getHexString() {
@@ -67,7 +67,7 @@ public class PaletteColor implements Parcelable {
         out.writeString(colorSectionName);
         out.writeInt(hex);
         out.writeString(baseName);
-        byte bAbpc = (byte) (isActionBarPreviewColor ? 1 : 0);
+        byte bAbpc = (byte) (isPrimaryColor ? 1 : 0);
         byte bPc = (byte) (isPreviewColor ? 1 : 0);
         out.writeByte(bAbpc);
         out.writeByte(bPc);
