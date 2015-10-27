@@ -3,16 +3,22 @@ package fr.hozakan.materialdesigncolorpalette.service;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
+import android.os.Handler;
+import android.os.Looper;
+import android.text.TextUtils;
+import android.util.SparseArray;
 
 import com.squareup.otto.Bus;
 
+import org.w3c.dom.Text;
+
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
 import fr.hozakan.materialdesigncolorpalette.R;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColor;
 import fr.hozakan.materialdesigncolorpalette.model.PaletteColorSection;
-import fr.hozakan.materialdesigncolorpalette.otto.PrimaryColorRemovedEvent;
 
 /**
  * Created by gimbert on 2014-08-11.
@@ -20,10 +26,18 @@ import fr.hozakan.materialdesigncolorpalette.otto.PrimaryColorRemovedEvent;
 public class PaletteService {
 
     private static final String SHARED_PREFERENCES_ID = "fr.hozakan.materialdesigncolorpalette.SharedPreferences";
-    private static final String PRIMARY_COLOR = "fr.hozakan.materialdesigncolorpalette.ActionBarPreviewColor";
+    private static final String PRIMARY_COLOR = "fr.hozakan.materialdesigncolorpalette.PrimaryColor";
+    private static final String PRIMARY_DARK_COLOR = "fr.hozakan.materialdesigncolorpalette.PrimaryDarkColor";
+    private static final String ACCENT_COLOR = "fr.hozakan.materialdesigncolorpalette.AccentColor";
     private static final String PREVIEW_COLORS = "fr.hozakan.materialdesigncolorpalette.PreviewColors";
 
+    public static final int SPARSE_PRIMARY_COLOR_KEY = 0;
+    public static final int SPARSE_PRIMARY_DARK_COLOR_KEY = 1;
+    public static final int SPARSE_ACCENT_COLOR_KEY = 2;
+
     private static PaletteColor mPrimaryColor;
+    private static PaletteColor mPrimaryDarkColor;
+    private static PaletteColor mAccentColor;
     private static List<PaletteColor> mPreviewColors;
     private static List<PaletteColorSection> mColorList;
     private static boolean initialized = false;
@@ -36,18 +50,36 @@ public class PaletteService {
         mBus = bus;
 
         if (!initialized) {
-            mPreviewColors = new ArrayList<PaletteColor>();
+            mPreviewColors = new ArrayList<>();
 
             final SharedPreferences prefs = getSharedPreferences();
 
-            String actionbarPreviewColor = prefs.getString(PRIMARY_COLOR, "");
+            String primaryColor = prefs.getString(PRIMARY_COLOR, "");
+            String primaryDarkColor = prefs.getString(PRIMARY_DARK_COLOR, "");
+            String accentColor = prefs.getString(ACCENT_COLOR, "");
             String previewColors = prefs.getString(PREVIEW_COLORS, "");
 
-            if (actionbarPreviewColor.length() > 0) {
-                PaletteColor color = findColor(actionbarPreviewColor);
+            if (!TextUtils.isEmpty(primaryColor)) {
+                PaletteColor color = findColor(primaryColor);
                 if (color != null) {
                     color.setPrimaryColor(true);
                     mPrimaryColor = color;
+                }
+            }
+
+            if (!TextUtils.isEmpty(primaryDarkColor)) {
+                PaletteColor color = findColor(primaryDarkColor);
+                if (color != null) {
+                    color.setPrimaryDarkColor(true);
+                    mPrimaryDarkColor = color;
+                }
+            }
+
+            if (!TextUtils.isEmpty(accentColor)) {
+                PaletteColor color = findColor(accentColor);
+                if (color != null) {
+                    color.setAccentColor(true);
+                    mAccentColor = color;
                 }
             }
 
@@ -56,7 +88,7 @@ public class PaletteService {
                 for (String preview : previews) {
                     PaletteColor color = findColor(preview);
                     if (color != null) {
-                        color.setPreviewColor(true);
+                        color.setPrimaryDarkColor(true);
                         mPreviewColors.add(color);
                     }
                 }
@@ -64,6 +96,18 @@ public class PaletteService {
             initialized = true;
         }
 
+    }
+
+    public PaletteColor getPrimaryColor() {
+        return mPrimaryColor;
+    }
+
+    public PaletteColor getPrimaryDarkColor() {
+        return mPrimaryDarkColor;
+    }
+
+    public PaletteColor getAccentColor() {
+        return mAccentColor;
     }
 
     private PaletteColor findColor(String colorHex) {
@@ -112,7 +156,7 @@ public class PaletteService {
             }
             List<PaletteColor> paletteColorList = new ArrayList<PaletteColor>();
             for (int j = 0; j < baseColorNames[i].length; j++) {
-                paletteColorList.add(new PaletteColor(colorSectionsNames[i], colorValues[i][j], baseColorNames[i][j], false, false));
+                paletteColorList.add(new PaletteColor(colorSectionsNames[i], colorValues[i][j], baseColorNames[i][j], false, false, false));
             }
             mColorList.add(new PaletteColorSection(colorSectionsNames[i], colorSectionsValues[i], darkColorSectionsValues[i], paletteColorList));
         }
@@ -252,20 +296,174 @@ public class PaletteService {
         return mPreviewColors;
     }
 
-    public boolean setPrimaryColor(PaletteColor color) {
-        final SharedPreferences prefs = getSharedPreferences();
-        PaletteColor oldPrimary = mPrimaryColor;
-        SharedPreferences.Editor editor = prefs.edit();
-        editor.putString(PRIMARY_COLOR, color.getHexString());
-        editor.commit();
-        color.setPrimaryColor(true);
-        this.mPrimaryColor = color;
-
-        if (oldPrimary != null) {
-            oldPrimary.setPrimaryColor(false);
-//            mBus.post(new PrimaryColorRemovedEvent(oldPrimary));
+    public SparseArray<PaletteColor> getChosenColors() {
+        SparseArray<PaletteColor> colors = new SparseArray<>();
+        if (mPrimaryColor != null) {
+            colors.put(SPARSE_PRIMARY_COLOR_KEY, mPrimaryColor);
         }
-        return true;
+        if (mPrimaryDarkColor != null) {
+            colors.put(SPARSE_PRIMARY_DARK_COLOR_KEY, mPrimaryDarkColor);
+        }
+        if (mAccentColor != null) {
+            colors.put(SPARSE_ACCENT_COLOR_KEY, mAccentColor);
+        }
+        return colors;
+    }
+
+    public interface SetPrimaryColorCallback {
+        public void onPrimaryColorRemoved(final PaletteColor oldPrimaryColor);
+        public void onPrimaryColorAdded(final PaletteColor newPrimaryColor);
+        public void onPrimaryColorChanged(PaletteColor oldPrimaryColor, PaletteColor newPrimaryColor);
+    }
+
+    public interface SetPrimaryDarkColorCallback {
+        public void onPrimaryDarkColorRemoved(final PaletteColor oldPrimaryDarkColor);
+        public void onPrimaryDarkColorAdded(final PaletteColor newPrimaryDarkColor);
+        public void onPrimaryDarkColorChanged(PaletteColor oldPrimaryDarkColor, PaletteColor newPrimaryDarkColor);
+    }
+
+    public interface SetAccentColorCallback {
+        public void onAccentColorRemoved(final PaletteColor oldAccentColor);
+        public void onAccentColorAdded(final PaletteColor newAccentColor);
+        public void onAccentColorChanged(PaletteColor oldAccentColor, PaletteColor newAccentColor);
+    }
+
+    public void setPrimaryColor(final PaletteColor primaryColor, final SetPrimaryColorCallback callback) {
+        final WeakReference<SetPrimaryColorCallback> cback = new WeakReference<>(callback);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                final SharedPreferences prefs = getSharedPreferences();
+                final PaletteColor oldPrimary = mPrimaryColor;
+                SharedPreferences.Editor editor = prefs.edit();
+
+                if (oldPrimary != null && primaryColor.getHexString().equals(oldPrimary.getHexString())) {
+                    mPrimaryColor = null;
+                    editor.putString(PRIMARY_COLOR, "");
+                    editor.commit();
+                } else {
+                    primaryColor.setPrimaryColor(true);
+                    mPrimaryColor = primaryColor;
+                    editor.putString(PRIMARY_COLOR, primaryColor.getHexString());
+                    editor.commit();
+                }
+
+
+                if (oldPrimary != null) {
+                    oldPrimary.setPrimaryColor(false);
+                }
+
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (cback.get() != null) {
+                            if (mPrimaryColor != null && oldPrimary != null) {
+                                cback.get().onPrimaryColorChanged(oldPrimary, primaryColor);
+                            } else if (mPrimaryColor != null) {
+                                cback.get().onPrimaryColorAdded(primaryColor);
+                            } else if (oldPrimary != null) {
+                                cback.get().onPrimaryColorRemoved(oldPrimary);
+                            }
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
+    public void setPrimaryDarkColor(final PaletteColor primaryDarkColor, final SetPrimaryDarkColorCallback callback) {
+        final WeakReference<SetPrimaryDarkColorCallback> cback = new WeakReference<>(callback);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                final SharedPreferences prefs = getSharedPreferences();
+                final PaletteColor oldPrimaryDark = mPrimaryDarkColor;
+                SharedPreferences.Editor editor = prefs.edit();
+
+                if (oldPrimaryDark != null && primaryDarkColor.getHexString().equals(oldPrimaryDark.getHexString())) {
+                    mPrimaryDarkColor = null;
+                    editor.putString(PRIMARY_DARK_COLOR, "");
+                    editor.commit();
+                } else {
+                    primaryDarkColor.setPrimaryDarkColor(true);
+                    mPrimaryDarkColor = primaryDarkColor;
+                    editor.putString(PRIMARY_DARK_COLOR, primaryDarkColor.getHexString());
+                    editor.commit();
+                }
+
+
+                if (oldPrimaryDark != null) {
+                    oldPrimaryDark.setPrimaryDarkColor(false);
+                }
+
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (cback.get() != null) {
+                            if (mPrimaryDarkColor != null && oldPrimaryDark != null) {
+                                cback.get().onPrimaryDarkColorChanged(oldPrimaryDark, primaryDarkColor);
+                            } else if (mPrimaryDarkColor != null) {
+                                cback.get().onPrimaryDarkColorAdded(primaryDarkColor);
+                            } else if (oldPrimaryDark != null) {
+                                cback.get().onPrimaryDarkColorRemoved(oldPrimaryDark);
+                            }
+                        }
+                    }
+                });
+            }
+        }).start();
+    }
+
+    public void setAccentColor(final PaletteColor accentColor, final SetAccentColorCallback callback) {
+        final WeakReference<SetAccentColorCallback> cback = new WeakReference<>(callback);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                final SharedPreferences prefs = getSharedPreferences();
+                final PaletteColor oldAccent = mAccentColor;
+                SharedPreferences.Editor editor = prefs.edit();
+
+                if (oldAccent != null && accentColor.getHexString().equals(oldAccent.getHexString())) {
+                    mAccentColor = null;
+                    editor.putString(ACCENT_COLOR, "");
+                    editor.commit();
+                } else {
+                    accentColor.setAccentColor(true);
+                    mAccentColor = accentColor;
+                    editor.putString(ACCENT_COLOR, accentColor.getHexString());
+                    editor.apply();
+                }
+
+
+                if (oldAccent != null) {
+                    oldAccent.setAccentColor(false);
+                }
+
+                Handler handler = new Handler(Looper.getMainLooper());
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (cback.get() != null) {
+                            if (mAccentColor != null && oldAccent != null) {
+                                cback.get().onAccentColorChanged(oldAccent, accentColor);
+                            } else if (mAccentColor != null) {
+                                cback.get().onAccentColorAdded(accentColor);
+                            } else if (oldAccent != null) {
+                                cback.get().onAccentColorRemoved(oldAccent);
+                            }
+                        }
+                    }
+                });
+            }
+        }).start();
     }
 
     public boolean resetActionBarPreviewColor() {
@@ -296,7 +494,7 @@ public class PaletteService {
         editor.putString(PREVIEW_COLORS, previewColors);
         editor.commit();
 
-        color.setPreviewColor(true);
+        color.setPrimaryDarkColor(true);
         mPreviewColors.add(color);
         return true;
     }
@@ -311,7 +509,7 @@ public class PaletteService {
             editor.putString(PREVIEW_COLORS, previewColors);
             editor.commit();
 
-            color.setPreviewColor(false);
+            color.setPrimaryDarkColor(false);
             mPreviewColors.remove(color);
             return true;
         }

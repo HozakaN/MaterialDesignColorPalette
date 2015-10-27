@@ -2,6 +2,8 @@ package fr.hozakan.materialdesigncolorpalette.preview;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.squareup.otto.Bus;
 
@@ -34,9 +37,12 @@ public class PreviewFragment extends Fragment {
 
     private View mScreenBackground;
     private View mActionBarPreview;
-    private RecyclerView mListView;
-//    private ColorCardAdapter<PreviewColorCard> mAdapter;
+    private EditText mEditText;
 
+    private PaletteColor mPrimaryColor;
+    private PaletteColor mPrimaryDarkColor;
+    private PaletteColor mAccentColor;
+//    private ColorCardAdapter<PreviewColorCard> mAdapter;
 
     public static PreviewFragment newInstance() {
         return new PreviewFragment();
@@ -49,39 +55,27 @@ public class PreviewFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
-        return mListView = (RecyclerView) inflater.inflate(R.layout.fragment_color_palette, container, false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mPrimaryColor = mService.getPrimaryColor();
+        mPrimaryDarkColor = mService.getPrimaryDarkColor();
+        mAccentColor = mService.getAccentColor();
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-//        getActivity().getActionBar().setDisplayHomeAsUpEnabled(true);
-//        getActivity().getActionBar().setDisplayShowHomeEnabled(true);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_preview, container, false);
+        mEditText = (EditText) rootView.findViewById(R.id.edit_text);
+        return rootView;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-//        mScreenBackground = view.findViewById(R.id.screen_background_preview);
-//        mActionBarPreview = view.findViewById(R.id.action_bar_preview);
 
-        PaletteColor actionbarColor = mService.getActionbarPreviewColor();
-        List<PaletteColor> previewColors = mService.getPreviewColors();
-//        mAdapter = new ColorCardAdapter<PreviewColorCard>(getActivity(), getColorCardList(previewColors));
-//        mListView.setAdapter(mAdapter);
-
-        final Drawable d = new ColorDrawable(actionbarColor.getHex());
-        getActivity().getActionBar().setBackgroundDrawable(d);
+        if (mAccentColor != null) {
+            mEditText.getBackground().setColorFilter(mAccentColor.getHex(), PorterDuff.Mode.SRC_IN);
+        }
     }
-
-
-//    private List<PreviewColorCard> getColorCardList(List<PaletteColor> previewColors) {
-//        return ColorCardTools.getColorCardList(getActivity().getApplicationContext(),
-//                mBus,
-//                previewColors);
-//    }
 
 }

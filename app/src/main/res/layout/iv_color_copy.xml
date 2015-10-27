@@ -6,4 +6,4 @@
     android:layout_alignParentBottom="true"
     android:layout_alignParentRight="true"
     android:background="?android:selectableItemBackground"
-    android:src="@drawable/ic_content_copy_grey600_24dp" />
+    android:src="@drawable/ic_content_copy_black_24dp" />

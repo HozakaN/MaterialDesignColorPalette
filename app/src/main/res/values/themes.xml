@@ -2,7 +2,19 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="colorPrimary">#e61212</item>-->
+        <item name="colorPrimaryDark">#e61212</item>
+        <item name="colorAccent">@android:color/transparent</item>
         <!-- Customize your theme here. -->
+        <item name="colorControlNormal">#e61212</item>
+        <!--<item name="colorControlActivated">#1299fa</item>-->
+        <!--<item name="colorControlHighlight">#e61212</item>-->
+    </style>
+
+    <style name="CustomUserTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@android:color/holo_red_light</item>
+        <item name="colorPrimaryDark">@color/md_yellow_900</item>
+        <item name="colorAccent">@color/md_blue_300</item>
     </style>
 
 </resources>

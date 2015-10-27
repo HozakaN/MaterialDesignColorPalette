@@ -9,16 +9,19 @@ public class PaletteColor implements Parcelable {
     private final String hexString;
     private final String baseName;
     private final String colorSectionName;
-    private boolean isPreviewColor;
     private boolean isPrimaryColor;
+    private boolean isPrimaryDarkColor;
+    private boolean isAccentColor;
 
-    public PaletteColor(String colorSectionName, final int hex, final String baseName, boolean isPrimaryColor, boolean isPreviewColor) {
+    public PaletteColor(String colorSectionName, final int hex, final String baseName,
+                        boolean isPrimaryColor, boolean isPrimaryDarkColor, boolean isAccentColor) {
         this.colorSectionName = colorSectionName;
         this.hex = hex;
         this.hexString = intToStringHex(this.hex);
         this.baseName = baseName;
         this.isPrimaryColor = isPrimaryColor;
-        this.isPreviewColor = isPreviewColor;
+        this.isPrimaryDarkColor = isPrimaryDarkColor;
+        this.isAccentColor = isAccentColor;
     }
 
     public static String intToStringHex(int hex) {
@@ -29,16 +32,24 @@ public class PaletteColor implements Parcelable {
         return hex;
     }
 
-    public boolean isPreviewColor() {
-        return isPreviewColor;
+    public boolean isPrimaryDarkColor() {
+        return isPrimaryDarkColor;
     }
 
     public boolean isPrimaryColor() {
         return isPrimaryColor;
     }
 
-    public void setPreviewColor(boolean isPreviewColor) {
-        this.isPreviewColor = isPreviewColor;
+    public void setPrimaryDarkColor(boolean isPrimaryDarkColor) {
+        this.isPrimaryDarkColor = isPrimaryDarkColor;
+    }
+
+    public boolean isAccentColor() {
+        return isAccentColor;
+    }
+
+    public void setAccentColor(boolean isAccentColor) {
+        this.isAccentColor = isAccentColor;
     }
 
     public void setPrimaryColor(boolean isPrimaryColor) {
@@ -67,10 +78,12 @@ public class PaletteColor implements Parcelable {
         out.writeString(colorSectionName);
         out.writeInt(hex);
         out.writeString(baseName);
-        byte bAbpc = (byte) (isPrimaryColor ? 1 : 0);
-        byte bPc = (byte) (isPreviewColor ? 1 : 0);
-        out.writeByte(bAbpc);
+        byte bPc = (byte) (isPrimaryColor ? 1 : 0);
+        byte bPdc = (byte) (isPrimaryDarkColor ? 1 : 0);
+        byte bAc = (byte) (isAccentColor ? 1 : 0);
         out.writeByte(bPc);
+        out.writeByte(bPdc);
+        out.writeByte(bAc);
     }
 
     public static final Parcelable.Creator<PaletteColor> CREATOR
@@ -79,9 +92,10 @@ public class PaletteColor implements Parcelable {
             final String colorSectionName = in.readString();
             final int hex = in.readInt();
             final String baseName = in.readString();
-            final boolean isActionbarPreviewColor = in.readByte() == 1 ? true : false;
-            final boolean isPreviewColor = in.readByte() == 1 ? true : false;
-            return new PaletteColor(colorSectionName, hex, baseName, isActionbarPreviewColor, isPreviewColor);
+            final boolean isPrimaryColor = in.readByte() == 1;
+            final boolean isPrimaryDarkColor = in.readByte() == 1;
+            final boolean isAccentColor = in.readByte() == 1;
+            return new PaletteColor(colorSectionName, hex, baseName, isPrimaryColor, isPrimaryDarkColor, isAccentColor);
         }
 
         public PaletteColor[] newArray(int size) {

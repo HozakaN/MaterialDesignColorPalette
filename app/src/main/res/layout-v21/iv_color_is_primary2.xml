@@ -7,4 +7,4 @@
     android:layout_alignParentRight="true"
     android:scaleType="center"
     android:clickable="true"
-    android:src="@drawable/ic_content_copy_grey600_24dp" />
+    android:src="@drawable/ic_content_copy_black_24dp" />

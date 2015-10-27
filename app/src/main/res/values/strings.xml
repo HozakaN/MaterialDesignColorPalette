@@ -4,10 +4,12 @@
     <string name="app_name">Material Design Color Palette</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="preview_screen_title">Preview</string>
 
     <!-- menu -->
     <string name="menu_go_to_preview">Go to preview</string>
 
+    <!-- home screen -->
     <string name="card_menu_actionbar_color_preview">Use as actionbar color preview</string>
     <string name="card_menu_color_preview">Use as color preview</string>
     <string name="card_menu_remove_actionbar_color_preview">Do not use as actionbar color preview</string>
@@ -15,6 +17,7 @@
     <string name="card_menu_copy_color">Copy color to clipboard</string>
     <string name="color_copied">Color %s copied to clipboard</string>
     <string name="color_clipboard">Color %1$s %2$s</string>
+    <string name="button_preview_text">Preview colors</string>
 
     <!-- navigation drawer sections -->
     <string-array name="color_sections_names">

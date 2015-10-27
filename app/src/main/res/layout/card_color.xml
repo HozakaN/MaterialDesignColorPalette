@@ -12,13 +12,10 @@
     <RelativeLayout
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:background="@drawable/color_card_background">
 
-        <!--<FrameLayout-->
-            <!--android:id="@+id/card_color_zone"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="@dimen/color_card_color_height" />-->
-        
         <RelativeLayout
             android:id="@+id/card_view_content"
             android:layout_width="match_parent"
@@ -54,15 +51,41 @@
 
         </RelativeLayout>
 
-        <!--<View-->
-            <!--android:id="@+id/actions_separator"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="1dp"-->
-            <!--android:layout_below="@id/card_view_content"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:background="@color/color_car_separator_dark_color" />-->
+        <!--<ImageButton-->
+            <!--android:id="@+id/color_copy"-->
+            <!--android:layout_width="@dimen/card_color_action_width"-->
+            <!--android:layout_height="@dimen/card_color_action_height"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:background="?android:selectableItemBackground"-->
+            <!--android:src="@drawable/ic_content_copy_black_24dp" />-->
 
-        <include layout="@layout/iv_color_copy" />
+        <ImageButton
+            android:id="@+id/primary_color"
+            android:layout_width="@dimen/card_color_action_width"
+            android:layout_height="@dimen/card_color_action_height"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/button_primary_color_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/primary_dark_color"
+            android:layout_width="@dimen/card_color_action_width"
+            android:layout_height="@dimen/card_color_action_height"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/primary_color"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/button_primary_dark_color_black_24dp" />
+
+        <ImageButton
+            android:id="@+id/accent_color"
+            android:layout_width="@dimen/card_color_action_width"
+            android:layout_height="@dimen/card_color_action_height"
+            android:layout_alignParentBottom="true"
+            android:layout_toLeftOf="@id/primary_dark_color"
+            android:background="?android:selectableItemBackground"
+            android:src="@drawable/button_accent_color_black_24dp" />
 
     </RelativeLayout>
 

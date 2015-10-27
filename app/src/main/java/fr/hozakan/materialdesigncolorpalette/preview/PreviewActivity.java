@@ -1,20 +1,20 @@
 package fr.hozakan.materialdesigncolorpalette.preview;
 
-import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
-import javax.inject.Inject;
-
+import fr.hozakan.materialdesigncolorpalette.BuildConfig;
 import fr.hozakan.materialdesigncolorpalette.R;
-import fr.hozakan.materialdesigncolorpalette.color_list.PaletteFragment;
-import fr.hozakan.materialdesigncolorpalette.dagger.BaseApplication;
-import fr.hozakan.materialdesigncolorpalette.service.PaletteService;
 
 /**
  * Created by gImbert on 12/08/2014.
  */
-public class PreviewActivity extends Activity {
+public class PreviewActivity extends ActionBarActivity {
 
     private static final String FRAGMENT_TAG = "FRAGMENT_TAG";
     private static final String FRAGMENT_KEY = "FRAGMENT_KEY";
@@ -27,8 +27,13 @@ public class PreviewActivity extends Activity {
 
         setContentView(R.layout.activity_preview);
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.toolbar);
+
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setTitle(R.string.preview_screen_title);
 
         if (savedInstanceState != null) {
             mFragment = (PreviewFragment) getFragmentManager()
@@ -59,5 +64,10 @@ public class PreviewActivity extends Activity {
     protected void onSaveInstanceState(Bundle outState) {
         getFragmentManager().putFragment(outState, FRAGMENT_KEY, mFragment);
         super.onSaveInstanceState(outState);
+    }
+
+    public static Intent createIntent(Context context) {
+        Intent intent = new Intent(context, PreviewActivity.class);
+        return intent;
     }
 }

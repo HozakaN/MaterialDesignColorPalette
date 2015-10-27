@@ -8,4 +8,4 @@
 
     <color name="color_car_separator_dark_color">@android:color/darker_gray</color>
     <color name="color_car_separator_light_color">@color/md_white_1000</color>
-</resources>
+    </resources>
